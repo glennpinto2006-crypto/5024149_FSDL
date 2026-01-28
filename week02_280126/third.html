@@ -7,11 +7,16 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            animation: fadeIn 1s ease-in;
         }
 
-        /* NAVBAR */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .navbar {
-            background-color: #111;
+            background: #111;
             color: white;
             padding: 15px 40px;
             display: flex;
@@ -19,51 +24,39 @@
             align-items: center;
         }
 
-        .navbar h2 {
-            margin: 0;
-            color: #ff3c00;
-        }
+        .navbar h2 { color: #ff3c00; margin: 0; }
 
         .navbar a {
             color: white;
             text-decoration: none;
             margin-left: 20px;
-            font-size: 14px;
+            transition: 0.3s;
         }
 
         .navbar a:hover {
             color: #ff3c00;
+            transform: scale(1.1);
         }
 
-        /* HERO SECTION */
         .hero {
             background-image: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
             background-size: cover;
             background-position: center;
-            height: 90vh;
-            color: white;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            color: white;
         }
 
         .hero h1 {
-            font-size: 50px;
             background: rgba(0,0,0,0.6);
-            padding: 20px;
+            padding: 20px 30px;
             border-radius: 10px;
+            font-size: 45px;
         }
 
-        /* CARS SECTION */
-        .cars {
-            padding: 40px;
-            text-align: center;
-        }
-
-        .cars h2 {
-            margin-bottom: 30px;
-        }
+        .cars { padding: 40px; text-align: center; }
 
         .car-container {
             display: flex;
@@ -78,101 +71,189 @@
             border-radius: 10px;
             box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             overflow: hidden;
-            transition: 0.3s;
+            transition: 0.4s;
         }
 
         .car-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(255,60,0,0.5);
         }
 
-        .car-card img {
+        /* IMAGE + VIDEO */
+        .media {
+            position: relative;
             width: 100%;
             height: 180px;
+            overflow: hidden;
+        }
+
+        .media img, .media video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
-        .car-card h3 {
-            margin: 10px 0;
+        .preview {
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .car-card p {
-            padding: 0 10px 15px;
-            font-size: 14px;
+        .car-card:hover .preview { opacity: 1; }
+        .car-card:hover .car-img { opacity: 0.3; }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
         }
 
-        /* ABOUT */
-        .about {
-            background: #111;
-            color: white;
-            padding: 40px;
-            text-align: center;
+        .modal:target {
+            opacity: 1;
+            visibility: visible;
         }
 
-        /* FOOTER */
+        .modal-content {
+            background: white;
+            padding: 25px;
+            width: 350px;
+            border-radius: 10px;
+        }
+
+        .close {
+            float: right;
+            text-decoration: none;
+            color: red;
+            font-size: 18px;
+        }
+
         .footer {
-            background: #000;
+            background: black;
             color: white;
             text-align: center;
             padding: 15px;
-            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <h2>Speed Motors</h2>
-        <div>
-            <a href="#">Home</a>
-            <a href="#">Cars</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+<div class="navbar">
+    <h2>Speed Motors</h2>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">Cars</a>
+        <a href="#">Contact</a>
+    </div>
+</div>
+
+<div class="hero">
+    <h1>Drive Your Dream Car 🚗</h1>
+</div>
+
+<div class="cars">
+    <h2>Featured Cars</h2>
+    <div class="car-container">
+
+        <div class="car-card">
+            <a href="#car1">
+                <div class="media">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d" class="car-img">
+                    <video class="preview" muted loop preload="none">
+                        <source src="https://cdn.coverr.co/videos/coverr-yellow-sports-car-driving-1608/1080p.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </a>
+            <h3>Lamborghini Aventador</h3>
         </div>
-    </div>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>Drive Your Dream Car Today 🚗</h1>
-    </div>
-
-    <!-- CARS -->
-    <div class="cars">
-        <h2>Featured Cars</h2>
-
-        <div class="car-container">
-            <div class="car-card">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d">
-                <h3>Lamborghini Aventador</h3>
-                <p>V12 engine, extreme performance, luxury design.</p>
-            </div>
-
-            <div class="car-card">
-                <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d">
-                <h3>BMW M4</h3>
-                <p>Sporty, elegant, and powerful driving experience.</p>
-            </div>
-
-            <div class="car-card">
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8">
-                <h3>Audi R8</h3>
-                <p>Iconic supercar with futuristic performance.</p>
-            </div>
+        <div class="car-card">
+            <a href="#car2">
+                <div class="media">
+                    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d" class="car-img">
+                    <video muted autoplay playsinline loop>
+                        <source src="Flame Spitting Aventador S in [4K].mp4" type="video/mp4">
+                    </video>
+                </div>
+            </a>
+            <h3>BMW M4</h3>
         </div>
-    </div>
 
-    <!-- ABOUT -->
-    <div class="about">
-        <h2>About Speed Motors</h2>
-        <p>We bring you the best luxury and performance cars from around the world.  
-        Your dream ride is just one step away.</p>
-    </div>
+        <div class="car-card">
+            <a href="#car3">
+                <div class="media">
+                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" class="car-img">
+                    <video class="preview" muted loop preload="none">
+                        <source src="https://cdn.coverr.co/videos/coverr-red-sports-car-driving-1572/1080p.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </a>
+            <h3>Audi R8</h3>
+        </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-        © 2026 Speed Motors | All Rights Reserved
     </div>
+</div>
+
+<!-- MODALS -->
+<div id="car1" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✖</a>
+        <h2>Lamborghini Aventador</h2>
+        <p><b>Engine:</b> 6.5L V12</p>
+        <p><b>Horsepower:</b> 770 HP</p>
+        <p><b>Top Speed:</b> 350 km/h</p>
+    </div>
+</div>
+
+<div id="car2" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✖</a>
+        <h2>BMW M4</h2>
+        <p><b>Engine:</b> 3.0L Twin Turbo</p>
+        <p><b>Horsepower:</b> 503 HP</p>
+        <p><b>Top Speed:</b> 250 km/h</p>
+    </div>
+</div>
+
+<div id="car3" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✖</a>
+        <h2>Audi R8</h2>
+        <p><b>Engine:</b> 5.2L V10</p>
+        <p><b>Horsepower:</b> 602 HP</p>
+        <p><b>Top Speed:</b> 330 km/h</p>
+    </div>
+</div>
+
+<div class="footer">
+    © 2026 Speed Motors
+</div>
+
+<!-- VIDEO HOVER SCRIPT -->
+<script>
+document.querySelectorAll(".car-card").forEach(card => {
+    const video = card.querySelector("video");
+
+    card.addEventListener("mouseenter", () => {
+        video.play();
+    });
+
+    card.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0;
+    });
+});
+</script>
 
 </body>
 </html>
